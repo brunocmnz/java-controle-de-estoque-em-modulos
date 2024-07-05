@@ -5,6 +5,7 @@
  */
 package bruno_menezes;
 
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
@@ -14,11 +15,12 @@ import java.util.Scanner;
  *
  * @author bruno
  */
-
 public class Bruno_Trabalho2_PC2 {
-    static Scanner sc = new Scanner(System.in);
+
+    static Scanner sc = new Scanner(System.in, StandardCharsets.UTF_8.name());
+
     static Random rdm = new Random();
-    
+
     //Criação do sistema para operar com os dados
     static Sistema sistema = Sistema.getInstance(20);
 
@@ -61,11 +63,11 @@ public class Bruno_Trabalho2_PC2 {
             System.out.println("");
             linhaImprimeLayout("=");
             System.out.printf("%8s \t%14s \t%14s \t%15s \t%18s\n",
-                    "Codigo", "Nome", "Marca", "Preco", "QuantEstoque");
+                      "Codigo", "Nome", "Marca", "Preco", "QuantEstoque");
             linhaImprimeLayout("-");
             System.out.printf("%8s \t%14s \t%14s \t%-4s%-14.2f \t%10s\n",
-                    p.getCodigo(), p.getNome(), p.getMarca(), "     R$   ",
-                    p.getPreco(), p.getQuantEstoque());
+                      p.getCodigo(), p.getNome(), p.getMarca(), "     R$   ",
+                      p.getPreco(), p.getQuantEstoque());
             linhaImprimeLayout("=");
             System.out.println("");
             return true;
@@ -80,16 +82,16 @@ public class Bruno_Trabalho2_PC2 {
     static void imprimeProdutos(Produto[] vetProdutos, boolean excluidos) {
         linhaImprimeLayout("=");
         System.out.printf("%8s \t%18s \t%15s \t%14s \t%18s\n",
-                "Codigo", "Nome", "Marca", "Preco", "QuantEstoque");
+                  "Codigo", "Nome", "Marca", "Preco", "QuantEstoque");
         linhaImprimeLayout("-");
         int imprimiu = 0;
         for (int i = 0; i < vetProdutos.length; i++) {
             boolean teste = vetProdutos[i].getSituacao() || excluidos;
             if (vetProdutos[i] != null && teste) {
                 System.out.printf("%8s \t%18s \t%15s \t%-5s%8.2f \t%18s\n",
-                        ("0000" + vetProdutos[i].getCodigo()), vetProdutos[i].getNome(),
-                        vetProdutos[i].getMarca(), "  R$", vetProdutos[i].getPreco(),
-                        vetProdutos[i].getQuantEstoque());
+                          ("0000" + vetProdutos[i].getCodigo()), vetProdutos[i].getNome(),
+                          vetProdutos[i].getMarca(), "  R$", vetProdutos[i].getPreco(),
+                          vetProdutos[i].getQuantEstoque());
                 imprimiu++;
             }
         }
@@ -109,17 +111,17 @@ public class Bruno_Trabalho2_PC2 {
         System.out.println("Nome do cliente: \t" + nomeCliente);
         linhaImprimeLayout("-");
         System.out.printf("%9s %11s %11s %15s %13s %25s\n",
-                "Codigo", "Nome", "Marca", "Preco", "Quantidade",
-                "Quantidade de Estoque");
+                  "Codigo", "Nome", "Marca", "Preco", "Quantidade",
+                  "Quantidade de Estoque");
         linhaImprimeLayout("-");
         boolean naoHaProdCadastrado = true;
         if (itensCarrinho != null) {
             for (int i = 0; i < carrinho.getNumProds(); i++) {
                 Produto prod = itensCarrinho[i].getProduto();
                 System.out.printf("%9s %11s %11s     %-3s%7.2f %13s %25s\n",
-                        ("0000" + prod.getCodigo()), prod.getNome(), prod.getMarca(), "  R$",
-                        itensCarrinho[i].getPreco(), itensCarrinho[i].getQuantidade(),
-                        prod.getQuantEstoque());
+                          ("0000" + prod.getCodigo()), prod.getNome(), prod.getMarca(), "  R$",
+                          itensCarrinho[i].getPreco(), itensCarrinho[i].getQuantidade(),
+                          prod.getQuantEstoque());
                 naoHaProdCadastrado = false;
             }
         }
@@ -164,7 +166,7 @@ public class Bruno_Trabalho2_PC2 {
             prod = sistema.buscarPorCodigo(codigo);
         } else if (atendente == 2) {
             System.out.print("Insira o nome do produto a ser " + texto + ": ");
-            String nome = sc.next();
+            String nome = sc.nextLine();
             prod = sistema.buscarPorNome(nome);
         }
         return prod;
@@ -191,8 +193,8 @@ public class Bruno_Trabalho2_PC2 {
             System.out.println("Insira um numero para realizar uma acao");
             linhaImprimeLayout("=");
             System.out.println("1 - Abrir novo carrinho  /  "
-                    + "2 <-> voltar ao menu principal  /  "
-                    + "3 (x) Encerrar programa");
+                      + "2 <-> voltar ao menu principal  /  "
+                      + "3 (x) Encerrar programa");
             linhaImprimeLayout("-");
             System.out.print("Insira a opcao desejada: ");
             operador = sc.nextInt();
@@ -200,7 +202,7 @@ public class Bruno_Trabalho2_PC2 {
                 if (nomeCliente == null) {
                     linhaImprimeLayout("=");
                     System.out.print("Insira o nome do cliente: ");
-                    sc = new Scanner(System.in);
+                    sc = new Scanner(System.in, StandardCharsets.UTF_8.name());
                     nomeCliente = sc.nextLine();
                 }
                 if (carrinho == null) {
@@ -215,7 +217,7 @@ public class Bruno_Trabalho2_PC2 {
     }
 
     static boolean insereItemAoCarrinho(Produto prod, double preco,
-            double quantidade, Carrinho carrinho, String nomeCliente) {
+              double quantidade, Carrinho carrinho, String nomeCliente) {
         boolean adicionar = false;
         if (quantidade > 0) {
             Item novoItem = Item.getInstance(prod, preco, quantidade);
@@ -230,21 +232,21 @@ public class Bruno_Trabalho2_PC2 {
                     System.out.print(" ");
                 }
                 System.out.println("O produto de nome " + prod.getNome()
-                        + " foi adicionado ao carrinho com sucesso");
+                          + " foi adicionado ao carrinho com sucesso");
             } else {
                 if (novoItem == null || novoItem.getPreco() <= 0) {
                     System.out.printf("%93s\n", "NAO FOI POSSIVEL ADICIONAR O ITEM AO "
-                            + "CARRINHO, POIS SEU PRECO E MENOR OU IGUAL A ZERO");
+                              + "CARRINHO, POIS SEU PRECO E MENOR OU IGUAL A ZERO");
                 } else {
                     System.out.printf("%93s\n", "NAO FOI POSSIVEL ADICIONAR O ITEM AO "
-                            + "CARRINHO, POIS IRIA ALEM DA QUANTIDADE DE ESTOQUE");
+                              + "CARRINHO, POIS IRIA ALEM DA QUANTIDADE DE ESTOQUE");
                 }
             }
             linhaImprimeLayout("=");
         } else {
             linhaImprimeLayout("=");
             System.out.println(" NAO FOI POSSIVEL ADICINAR O ITEM AO CARRINHO, "
-                    + "POIS A QUANTIDADE INSERIDA FOI MENOR OU IGUAL A ZERO");
+                      + "POIS A QUANTIDADE INSERIDA FOI MENOR OU IGUAL A ZERO");
         }
         return adicionar;
     }
@@ -256,20 +258,20 @@ public class Bruno_Trabalho2_PC2 {
         linhaImprimeLayout("=");
         //Parte que imprime as informacoes dos produtos vendidos
         System.out.printf("%17s %14s %11s %15s %18s\n",
-                "Codigo do Produto", "Nome", "Marca", "Preco", "Quantidade");
+                  "Codigo do Produto", "Nome", "Marca", "Preco", "Quantidade");
         linhaImprimeLayout("-");
         Item[] itenVendidos = venda.getItensVendidos();
         for (int i = 0; i < venda.getNumItens(); i++) {
             Item item = itenVendidos[i];
             Produto prod = item.getProduto();
             System.out.printf("%17s %14s %11s     %-3s%7.2f %18s\n",
-                    ("0000" + prod.getCodigo()), prod.getNome(), prod.getMarca(), "  R$",
-                    item.getPreco(), item.getQuantidade());
+                      ("0000" + prod.getCodigo()), prod.getNome(), prod.getMarca(), "  R$",
+                      item.getPreco(), item.getQuantidade());
         }
         linhaImprimeLayout("_");
         //Parte que imprime as informacoes da venda
         System.out.printf("%17s %14s %27s",
-                "Codigo da venda", "Valor Total", "Data e horario da venda");
+                  "Codigo da venda", "Valor Total", "Data e horario da venda");
         int tamanhoNomeCliente = venda.getNomeCliente().length();
         if (tamanhoNomeCliente >= 19) {
             for (int i = 0; i < tamanhoNomeCliente - 10; i++) {
@@ -281,7 +283,7 @@ public class Bruno_Trabalho2_PC2 {
         }
         linhaImprimeLayout("-");
         System.out.printf("%17s %7s %5.2f %27s",
-                ("0000" + venda.getCodigo()), "  R$", venda.getValorTotal(), venda.getDataEHoraString());
+                  ("0000" + venda.getCodigo()), "  R$", venda.getValorTotal(), venda.getDataEHoraString());
         if (tamanhoNomeCliente >= 19) {
             for (int i = 0; i < 5; i++) {
                 System.out.print(" ");
@@ -310,11 +312,11 @@ public class Bruno_Trabalho2_PC2 {
             System.out.printf("%60s\n", "MENU CARRINHO ABERTO");
             linhaImprimeLayout("*");
             System.out.println("   1 - Adicionar item "
-                    + "   /   2 <-> Voltar ao menu anterior  /  "
-                    + "3 - Cancelar venda / 4 - Remover item ");
+                      + "   /   2 <-> Voltar ao menu anterior  /  "
+                      + "3 - Cancelar venda / 4 - Remover item ");
             System.out.println(" 5 - Alterar dados de um item"
-                    + "     /    6 ($) Fechar venda    /    "
-                    + "7 - Listar carrinho");
+                      + "     /    6 ($) Fechar venda    /    "
+                      + "7 - Listar carrinho");
             linhaImprimeLayout("-");
             System.out.print("Insira a opcao desejada: ");
             operador = sc.nextInt();
@@ -330,7 +332,7 @@ public class Bruno_Trabalho2_PC2 {
                     if (prod == null) {
                         linhaImprimeLayout("=");
                         System.out.printf("%75s\n", "ESSE PRODUTO FOI EXCLUIDO E"
-                                + " NAO ESTA MAIS DISPONIVEL");
+                                  + " NAO ESTA MAIS DISPONIVEL");
                         linhaImprimeLayout("=");
                         System.out.println("");
                         break;
@@ -338,37 +340,29 @@ public class Bruno_Trabalho2_PC2 {
                         double preco = 0;
                         boolean adicionar = false;
                         if (prod != null) {
-                            System.out.print("Insira o preco do produto "
-                                    + prod.getNome() + ": ");
-                            preco = sc.nextDouble();
-                            if (preco <= 0) {
+                            preco = prod.getPreco();
+                            System.out.print("Insira a quantidade do produtos"
+                                      + " a inserir no carrinho: ");
+                            double quantidade = sc.nextDouble();
+                            if (quantidade <= 0) {
                                 linhaImprimeLayout("=");
-                                System.out.printf("%64s\n", "PRECO INSERIDO INVALIDO");
+                                System.out.printf("%62s\n", "QUANTIDADE INSERIDA INVALIDA");
                                 linhaImprimeLayout("=");
                             } else {
-                                System.out.print("Insira a quantidade do produtos"
-                                        + " a inserir no carrinho: ");
-                                double quantidade = sc.nextDouble();
-                                if (quantidade <= 0) {
-                                    linhaImprimeLayout("=");
-                                    System.out.printf("%62s\n", "QUANTIDADE INSERIDA INVALIDA");
-                                    linhaImprimeLayout("=");
-                                } else {
-                                    adicionar = insereItemAoCarrinho(prod, preco,
-                                            quantidade, carrinho, nomeCliente);
-                                    if (adicionar) {
-                                        itensAdicionados++;
-                                    }
+                                adicionar = insereItemAoCarrinho(prod, preco,
+                                          quantidade, carrinho, nomeCliente);
+                                if (adicionar) {
+                                    itensAdicionados++;
                                 }
                             }
                         } else {
                             linhaImprimeLayout("-");
                             if (operador == 1) {
                                 System.out.println("Nao foi encontrado"
-                                        + " nenhum produto com o codigo " + codigoProd);
+                                          + " nenhum produto com o codigo " + codigoProd);
                             } else if (operador == 2) {
                                 System.out.println("Nao foi encontrado"
-                                        + " nenhum produto com o nome " + nomeProd);
+                                          + " nenhum produto com o nome " + nomeProd);
                             }
                         }
                         if (operador == 2) {
@@ -385,7 +379,7 @@ public class Bruno_Trabalho2_PC2 {
                     do {
                         linhaImprimeLayout("=");
                         System.out.println("Ao voltar ao menu anterior o carrinho "
-                                + "que esta aberto sera cancecelado");
+                                  + "que esta aberto sera cancecelado");
                         System.out.println("Deseja mesmo voltar?    1 - Sim  /  2 - Nao");
                         linhaImprimeLayout("-");
                         System.out.print("Opcao desejada: ");
@@ -418,13 +412,13 @@ public class Bruno_Trabalho2_PC2 {
                     linhaImprimeLayout("=");
                     if (operador == 1) {
                         System.out.print("Insira o codigo do produto"
-                                + " a ser removido: ");
+                                  + " a ser removido: ");
                         codigoProd = sc.nextInt();
                         itemParaRemover = carrinho.buscarItem(codigoProd);
                     } else if (operador == 2) {
                         System.out.print("Insira o nome do produto"
-                                + "a ser removido: ");
-                        nomeProd = sc.next();
+                                  + "a ser removido: ");
+                        nomeProd = sc.nextLine();
                         itemParaRemover = carrinho.buscarItem(nomeProd);
                         operador = 0;
                     }
@@ -442,7 +436,7 @@ public class Bruno_Trabalho2_PC2 {
                 } else {
                     linhaImprimeLayout("=");
                     System.out.printf("%84s\n", "NAO E POSSIVEL EXCLUIR ITENS, POIS "
-                            + "AINDA NAO FOI ADICIONADO NENHUM ITEM");
+                              + "AINDA NAO FOI ADICIONADO NENHUM ITEM");
                     linhaImprimeLayout("=");
                 }
 //Opcao 5
@@ -459,13 +453,13 @@ public class Bruno_Trabalho2_PC2 {
                         }
                         if (operador == 1) {
                             System.out.print("Insira o codigo do "
-                                    + "item a ser alterado: ");
+                                      + "item a ser alterado: ");
                             codigoProd = sc.nextInt();
                             alterar = carrinho.buscarItem(codigoProd);
                         } else if (operador == 2) {
                             System.out.print("Insira o nome do "
-                                    + "item a ser alterado: ");
-                            nomeProd = sc.next();
+                                      + "item a ser alterado: ");
+                            nomeProd = sc.nextLine();
                             alterar = carrinho.buscarItem(nomeProd);
                         } else {
                             linhaImprimeLayout("=");
@@ -475,8 +469,8 @@ public class Bruno_Trabalho2_PC2 {
                     } while (operador != 1 && operador != 2);
                     linhaImprimeLayout("=");
                     System.out.println("O que deseja alterar\n"
-                            + "1 - Preco  /  2 - Quantidade  /  "
-                            + "3 - Produto");
+                              + "1 - Preco  /  2 - Quantidade  /  "
+                              + "3 - Produto");
                     linhaImprimeLayout("-");
                     System.out.print("Insira a opcao desejada: ");
                     operador = sc.nextInt();
@@ -503,7 +497,7 @@ public class Bruno_Trabalho2_PC2 {
                                     prod = sistema.buscarPorCodigo(codigoProd);
                                 } else if (decisao == 2) {
                                     System.out.print("Insira o nome do novo produto: ");
-                                    nomeProd = sc.next();
+                                    nomeProd = sc.nextLine();
                                     prod = sistema.buscarPorNome(nomeProd);
                                 }
                                 if (prod == null) {
@@ -535,8 +529,8 @@ public class Bruno_Trabalho2_PC2 {
                         System.out.println("");
                         linhaImprimeLayout("=");
                         System.out.printf("%68s\n", ("ITEM DE CODIGO "
-                                + alterar.getProduto().getCodigo()
-                                + " ALTERADO COM SUCESSO"));
+                                  + alterar.getProduto().getCodigo()
+                                  + " ALTERADO COM SUCESSO"));
                         linhaImprimeLayout("=");
                         imprimeCarrinho(carrinho, nomeCliente);
                         linhaImprimeLayout("=");
@@ -548,7 +542,7 @@ public class Bruno_Trabalho2_PC2 {
                 } else {
                     linhaImprimeLayout("=");
                     System.out.printf("%84s\n", "NAO E POSSIVEL ALTERAR ITENS, POIS "
-                            + "AINDA NAO FOI ADICIONADO NENHUM ITEM");
+                              + "AINDA NAO FOI ADICIONADO NENHUM ITEM");
                     linhaImprimeLayout("=");
                 }
                 operador = 0;
@@ -567,7 +561,7 @@ public class Bruno_Trabalho2_PC2 {
                     linhaImprimeLayout("=");
                     if (carrinho.getNumProds() <= 0) {
                         System.out.printf("%78s\n", "Nao foi possivel concluir a venda"
-                                + " pois o carrinho esta vazio");
+                                  + " pois o carrinho esta vazio");
                     } else {
                         System.out.printf("%65s\n", "Nao foi possivel conclir a venda");
                     }
@@ -580,7 +574,7 @@ public class Bruno_Trabalho2_PC2 {
                 } else {
                     linhaImprimeLayout("=");
                     System.out.printf("%84s\n", "NAO E POSSIVEL LISTAR, POIS "
-                            + "AINDA NAO HA ITENS ADICIONADOS");
+                              + "AINDA NAO HA ITENS ADICIONADOS");
                     linhaImprimeLayout("=");
                 }
             } else {
@@ -622,7 +616,7 @@ public class Bruno_Trabalho2_PC2 {
             Venda venda = vendas[i];
             if (venda != null) {
                 System.out.printf("%-30s %-30.2f\n",
-                        venda.getCodigo(), venda.getValorTotal());
+                          venda.getCodigo(), venda.getValorTotal());
                 if (i < numVendas - 1) {
                     linhaImprimeLayout(".");
                 }
@@ -639,9 +633,9 @@ public class Bruno_Trabalho2_PC2 {
         linhaImprimeLayout("=");
         System.out.println("1 - Detalhar um produto pelo nome ou codigo");
         System.out.println("2 - Listar apenas produtos cadastrados que nao "
-                + "tenham sido 'excluidos'");
+                  + "tenham sido 'excluidos'");
         System.out.println("3 - Listar TODOS os produtos que estao cadastrados, "
-                + "mesmo que ja tenham sido 'excluidos'");
+                  + "mesmo que ja tenham sido 'excluidos'");
         linhaImprimeLayout("-");
         System.out.print("Insira a opcao desejada: ");
         decisao = sc.nextInt();
@@ -649,7 +643,7 @@ public class Bruno_Trabalho2_PC2 {
         if (decisao == 1) {
 //Opcao 1
             System.out.println("Como deseja buscar pelo produto?     "
-                    + "1 - Por codigo  /  2 - Por nome");
+                      + "1 - Por codigo  /  2 - Por nome");
             linhaImprimeLayout("-");
             System.out.print("Insira a opcao escolhida: ");
             decisao = sc.nextInt();
@@ -661,7 +655,7 @@ public class Bruno_Trabalho2_PC2 {
             }
             if (decisao == 1) {
                 System.out.print("Insira o codigo do produto para "
-                        + "ver seus dados: ");
+                          + "ver seus dados: ");
                 int codigoProd = sc.nextInt();
                 prod = sistema.buscarPorCodigo(codigoProd);
                 if (prod != null) {
@@ -669,20 +663,20 @@ public class Bruno_Trabalho2_PC2 {
                 } else {
                     linhaImprimeLayout("=");
                     System.out.printf("%82s\n", "Nao foi possivel localizar "
-                            + "o produto pois o codigo inserido não"
-                            + " esta cadastrado");
+                              + "o produto pois o codigo inserido não"
+                              + " esta cadastrado");
                 }
             } else if (decisao == 2) {
                 System.out.print("Insira o nome do produto desejado: ");
-                String nomeProd = sc.next();
+                String nomeProd = sc.nextLine();
                 prod = sistema.buscarPorNome(nomeProd);
                 if (prod != null) {
                     imprimeProduto(prod);
                 } else {
                     linhaImprimeLayout("=");
                     System.out.println("Nao foi possivel localizar "
-                            + "o produto, pois seu nome pode ter "
-                            + "sido inserido incorretamente");
+                              + "o produto, pois seu nome pode ter "
+                              + "sido inserido incorretamente");
                 }
             }
         } else if (decisao == 2 || decisao == 3) {
@@ -690,7 +684,7 @@ public class Bruno_Trabalho2_PC2 {
             int opcao = decisao;
             linhaImprimeLayout("-");
             System.out.print("1 - Listar pela ordem de cadastro"
-                    + "              /      ");
+                      + "              /      ");
             System.out.println("2 - Listar por ordem alfabetica");
             linhaImprimeLayout("-");
             System.out.print("Insira a forma desejada: ");
@@ -728,14 +722,14 @@ public class Bruno_Trabalho2_PC2 {
     static void listarTodasVendas(Venda[] vendas) {
         linhaImprimeLayout("=");
         System.out.printf("%20s %34s  %26s\n",
-                "Codigo", "Data e Horario", "Valor da venda");
+                  "Codigo", "Data e Horario", "Valor da venda");
         linhaImprimeLayout("-");
         for (int i = 0; i < vendas.length; i++) {
             if (vendas[i] != null) {
                 Venda venda = vendas[i];
                 System.out.printf("%20s %34s %18s  %7.2f\n",
-                        ("000" + venda.getCodigo()), venda.getDataEHoraString(),
-                        "R$  ", venda.getValorTotal());
+                          ("000" + venda.getCodigo()), venda.getDataEHoraString(),
+                          "R$  ", venda.getValorTotal());
                 linhaImprimeLayout(".");
             }
         }
@@ -745,7 +739,7 @@ public class Bruno_Trabalho2_PC2 {
         Venda[] vendas = sistema.getVendas();
         int numVendas = Sistema.getNumVendasFeitas();
         System.out.printf("%10s %20s %15s\n", "CODIGO", "DATA E HORARIO",
-                "VALOR TOTAL");
+                  "VALOR TOTAL");
         linhaImprimeLayout("-");
         Venda[] vendasDia = new Venda[sistema.getNumVendasFeitas()];
         int j = 0;
@@ -758,12 +752,12 @@ public class Bruno_Trabalho2_PC2 {
         }
         if (j == 0) {
             System.out.printf("%75s\n", ("NAO HA NENHUMA VENDA CADASTRADA PARA O"
-                    + " DIA " + dataImprimirVenda));
+                      + " DIA " + dataImprimirVenda));
         } else {
             System.out.println("");
             linhaImprimeLayout("=");
             System.out.printf("%68s\n", "LISTAGEM DE TODAS AS VENDAS DO DIA "
-                    + dataImprimirVenda);
+                      + dataImprimirVenda);
             listarTodasVendas(vendasDia);
         }
         linhaImprimeLayout("=");
@@ -802,7 +796,7 @@ public class Bruno_Trabalho2_PC2 {
                 System.out.println("");
                 linhaImprimeLayout("=");
                 System.out.printf("%68s\n", "LISTAGEM DE TODAS AS VENDAS "
-                        + "JA REALIZADAS");
+                          + "JA REALIZADAS");
                 listarTodasVendas(sistema.getVendas());
                 break;
             case 2:
@@ -853,9 +847,9 @@ public class Bruno_Trabalho2_PC2 {
             System.out.println("Insira um número para realizar uma acao");
             linhaImprimeLayout("=");
             System.out.println(" 1  -  Inserir Produtos /  2 -  Alterar dados de um produto"
-                    + "   / 3  -  Excluir Produtos");
+                      + "   / 3  -  Excluir Produtos");
             System.out.println("4  -  Gerar listagens  /  5 <=> Voltar ao menu principal"
-                    + "     / 6 (x) Encerrar o programa");
+                      + "     / 6 (x) Encerrar o programa");
             linhaImprimeLayout("-");
             System.out.print("Insira a opcao desejada: ");
             decisao = sc.nextInt();
@@ -872,9 +866,9 @@ public class Bruno_Trabalho2_PC2 {
                 boolean validaCodigo = sistema.verificaValidadeCodigo(codigoProd);
                 if (validaCodigo) {
                     System.out.print("Nome: ");
-                    nomeProd = sc.next();
+                    nomeProd = sc.nextLine();
                     System.out.print("Marca: ");
-                    String marca = sc.next();
+                    String marca = sc.nextLine();
                     System.out.print("Preco: ");
                     double preco = sc.nextFloat();
                     System.out.print("Quantidade de estoque: ");
@@ -885,7 +879,7 @@ public class Bruno_Trabalho2_PC2 {
                         imprimeProdutosQueNaoExcluido(sistema.getProdutos());
                         linhaImprimeLayout("=");
                         System.out.printf("%70s\n", ("O produto de nome " + prod.getNome()
-                                + " foi inserido com sucesso"));
+                                  + " foi inserido com sucesso"));
                     } else {
                         if (preco <= 0 || quantEstoque <= 0) {
                             if (preco <= 0) {
@@ -898,11 +892,11 @@ public class Bruno_Trabalho2_PC2 {
                                 System.out.printf("%62s\n", "PRECO INSERIDO INVALIDO");
                                 linhaImprimeLayout("=");
                             }
-                        }else if(prod != null && prod.getNome() != null){
+                        } else if (prod != null && prod.getNome() != null) {
                             linhaImprimeLayout("=");
                             System.out.printf("%92s\n", "NAO FOI POSSIVEL FAZER"
-                                    + " O CADASTRO POIS JA HA UM PRODUTO CADASTRADO"
-                                    + " COM ESSE NOME");
+                                      + " O CADASTRO POIS JA HA UM PRODUTO CADASTRADO"
+                                      + " COM ESSE NOME");
                             linhaImprimeLayout("=");
                         }
                     }
@@ -931,12 +925,12 @@ public class Bruno_Trabalho2_PC2 {
                 if (delet == false) {
                     linhaImprimeLayout("-");
                     System.out.printf("%78s\n", "NAO FOI POSSIVEL DELETAR O "
-                            + "PRODUTO PORQUE ELE NAO ESTA CADASTRADO");
+                              + "PRODUTO PORQUE ELE NAO ESTA CADASTRADO");
                 } else {
                     imprimeProdutosQueNaoExcluido(sistema.getProdutos());
                     linhaImprimeLayout("=");
                     System.out.printf("%75s\n", ("O produto " + prod.getNome() + " de codigo "
-                            + prod.getCodigo() + " foi excluido com sucesso"));
+                              + prod.getCodigo() + " foi excluido com sucesso"));
                 }
 //Opcao 4
             } else if (decisao == 4) {
@@ -985,13 +979,13 @@ public class Bruno_Trabalho2_PC2 {
         linhaImprimeLayout("=");
         if (alterar == 1) {
             System.out.print("Insira o codigo do produto que "
-                    + "deseja alterar: ");
+                      + "deseja alterar: ");
             codigoProd = sc.nextInt();
             prodAlterar = sistema.buscarPorCodigo(codigoProd);
         } else if (alterar == 2) {
             System.out.print("Insira o nome do produto que "
-                    + "deseja alterar: ");
-            nomeProd = sc.next();
+                      + "deseja alterar: ");
+            nomeProd = sc.nextLine();
             prodAlterar = sistema.buscarPorNome(nomeProd);
         } else {
             opcaoInvalida();
@@ -1000,17 +994,17 @@ public class Bruno_Trabalho2_PC2 {
             linhaImprimeLayout("-");
             if (alterar == 1) {
                 System.out.printf("%70s\n", "Nao foi encontrado nenhum "
-                        + "produto com esse codigo");
+                          + "produto com esse codigo");
                 linhaImprimeLayout("=");
                 System.out.println("");
             } else if (alterar == 2) {
                 System.out.printf("%70s\n", "Nao foi encontrado "
-                        + "nenhum produto com esse nome");
+                          + "nenhum produto com esse nome");
             }
         } else {
             linhaImprimeLayout("-");
             System.out.println("Insira abaixo o dado que deseja alterar "
-                    + "do produto");
+                      + "do produto");
             linhaImprimeLayout("-");
             System.out.println("1 - Alterar Codigo");
             System.out.println("2 - Alterar Nome");
@@ -1037,16 +1031,16 @@ public class Bruno_Trabalho2_PC2 {
                 } else {
                     linhaImprimeLayout("=");
                     System.out.printf("%85s\n", "NAO FOI POSSIVEL FAZER A ALTERACAO, "
-                            + "POIS JA HA UM PRODUTO COM O CODIGO " + codigoProd);
+                              + "POIS JA HA UM PRODUTO COM O CODIGO " + codigoProd);
                     linhaImprimeLayout("=");
                 }
             } else if (opcao == 2) {
                 System.out.print("Insira o novo nome do produto: ");
-                nomeProd = sc.next();
+                nomeProd = sc.nextLine();
                 alteracao = prodAlterar.setNome(nomeProd);
             } else if (opcao == 3) {
                 System.out.print("Insira a nova marca do produto: ");
-                marca = sc.next();
+                marca = sc.nextLine();
                 alteracao = prodAlterar.setMarca(marca);
             } else if (opcao == 4) {
                 System.out.print("Insira o novo preco do produto: ");
@@ -1064,19 +1058,19 @@ public class Bruno_Trabalho2_PC2 {
                 linhaImprimeLayout("=");
                 if (opcao == 1) {
                     System.out.printf("%70s\n", ("O codigo do produto de nome "
-                            + prodAlterar.getNome() + " foi alterado com sucesso"));
+                              + prodAlterar.getNome() + " foi alterado com sucesso"));
                 } else if (opcao == 2) {
                     System.out.printf("%70s\n", ("O nome do produto de codigo "
-                            + prodAlterar.getCodigo() + " foi alterado com sucesso"));
+                              + prodAlterar.getCodigo() + " foi alterado com sucesso"));
                 } else if (opcao == 3) {
                     System.out.printf("%70s\n", ("A marca do produto de nome "
-                            + prodAlterar.getNome() + " foi alterada com sucesso"));
+                              + prodAlterar.getNome() + " foi alterada com sucesso"));
                 } else if (opcao == 4) {
                     System.out.printf("%70s\n", ("O preco do produto de nome "
-                            + prodAlterar.getNome() + " foi alterado com sucesso"));
+                              + prodAlterar.getNome() + " foi alterado com sucesso"));
                 } else if (opcao == 5) {
                     System.out.printf("%78s\n", ("A quantidade de estoque do produto"
-                            + " de nome " + prodAlterar.getNome() + " foi alterada com sucesso"));
+                              + " de nome " + prodAlterar.getNome() + " foi alterada com sucesso"));
                 }
             } else if (opcao > 1) {
                 System.out.printf("%50s\n", "NAO FOI POSSIVEL FAZER A ALTERACAO");
@@ -1092,7 +1086,7 @@ public class Bruno_Trabalho2_PC2 {
         System.out.println("Insira um numero para realizar uma acao");
         linhaImprimeLayout("=");
         System.out.println("1  -  Modulo Atendente    /   2  -  Modulo Administrador"
-                + "    /   3 (x) Encerrar o programa");
+                  + "    /   3 (x) Encerrar o programa");
         linhaImprimeLayout("-");
         System.out.print("Insira a opcao desejada: ");
         operador = sc.nextInt();
