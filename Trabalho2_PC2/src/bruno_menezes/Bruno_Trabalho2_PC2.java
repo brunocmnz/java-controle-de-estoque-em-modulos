@@ -24,6 +24,21 @@ public class Bruno_Trabalho2_PC2 {
     //Criação do sistema para operar com os dados
     static Sistema sistema = Sistema.getInstance(20);
 
+    static String recebeString(){
+        Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8.name());
+        return scanner.nextLine();
+    }
+
+    static int recebeInt(){
+        Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8.name());
+        return scanner.nextInt();
+    }
+
+    static Float recebeFloat(){
+        Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8.name());
+        return scanner.nextFloat();
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -166,7 +181,7 @@ public class Bruno_Trabalho2_PC2 {
             prod = sistema.buscarPorCodigo(codigo);
         } else if (atendente == 2) {
             System.out.print("Insira o nome do produto a ser " + texto + ": ");
-            String nome = sc.nextLine();
+            String nome = recebeString();
             prod = sistema.buscarPorNome(nome);
         }
         return prod;
@@ -203,7 +218,7 @@ public class Bruno_Trabalho2_PC2 {
                     linhaImprimeLayout("=");
                     System.out.print("Insira o nome do cliente: ");
                     sc = new Scanner(System.in, StandardCharsets.UTF_8.name());
-                    nomeCliente = sc.nextLine();
+                    nomeCliente = recebeString();
                 }
                 if (carrinho == null) {
                     carrinho = Carrinho.getInstace();
@@ -418,7 +433,7 @@ public class Bruno_Trabalho2_PC2 {
                     } else if (operador == 2) {
                         System.out.print("Insira o nome do produto"
                                   + "a ser removido: ");
-                        nomeProd = sc.nextLine();
+                        nomeProd = recebeString();
                         itemParaRemover = carrinho.buscarItem(nomeProd);
                         operador = 0;
                     }
@@ -459,7 +474,7 @@ public class Bruno_Trabalho2_PC2 {
                         } else if (operador == 2) {
                             System.out.print("Insira o nome do "
                                       + "item a ser alterado: ");
-                            nomeProd = sc.nextLine();
+                            nomeProd = recebeString();
                             alterar = carrinho.buscarItem(nomeProd);
                         } else {
                             linhaImprimeLayout("=");
@@ -497,7 +512,7 @@ public class Bruno_Trabalho2_PC2 {
                                     prod = sistema.buscarPorCodigo(codigoProd);
                                 } else if (decisao == 2) {
                                     System.out.print("Insira o nome do novo produto: ");
-                                    nomeProd = sc.nextLine();
+                                    nomeProd = recebeString();
                                     prod = sistema.buscarPorNome(nomeProd);
                                 }
                                 if (prod == null) {
@@ -668,7 +683,7 @@ public class Bruno_Trabalho2_PC2 {
                 }
             } else if (decisao == 2) {
                 System.out.print("Insira o nome do produto desejado: ");
-                String nomeProd = sc.nextLine();
+                String nomeProd = recebeString();
                 prod = sistema.buscarPorNome(nomeProd);
                 if (prod != null) {
                     imprimeProduto(prod);
@@ -804,7 +819,7 @@ public class Bruno_Trabalho2_PC2 {
                 linhaImprimeLayout("=");
                 System.out.print("Insira a data desejada no formato (xx/xx/xxxx): ");
                 sc = new Scanner(System.in);
-                String dataRecebida = sc.nextLine();
+                String dataRecebida = recebeString();
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 boolean listar = true;
                 //String data = null;
@@ -866,14 +881,14 @@ public class Bruno_Trabalho2_PC2 {
                 boolean validaCodigo = sistema.verificaValidadeCodigo(codigoProd);
                 if (validaCodigo) {
                     System.out.print("Nome: ");
-                    nomeProd = sc.nextLine();
+                    nomeProd = recebeString();
                     System.out.print("Marca: ");
-                    String marca = sc.nextLine();
+                    String marca = recebeString();
                     System.out.print("Preco: ");
                     double preco = sc.nextFloat();
                     System.out.print("Quantidade de estoque: ");
                     int quantEstoque = sc.nextInt();
-                    prod = Produto.getInstance(codigoProd, nomeProd, marca, preco, preco);
+                    prod = Produto.getInstance(codigoProd, nomeProd, marca, preco, quantEstoque);
                     boolean insert = sistema.cadastrarProduto(prod);
                     if (insert) {
                         imprimeProdutosQueNaoExcluido(sistema.getProdutos());
@@ -985,7 +1000,7 @@ public class Bruno_Trabalho2_PC2 {
         } else if (alterar == 2) {
             System.out.print("Insira o nome do produto que "
                       + "deseja alterar: ");
-            nomeProd = sc.nextLine();
+            nomeProd = recebeString();
             prodAlterar = sistema.buscarPorNome(nomeProd);
         } else {
             opcaoInvalida();
@@ -1036,11 +1051,11 @@ public class Bruno_Trabalho2_PC2 {
                 }
             } else if (opcao == 2) {
                 System.out.print("Insira o novo nome do produto: ");
-                nomeProd = sc.nextLine();
+                nomeProd = recebeString();
                 alteracao = prodAlterar.setNome(nomeProd);
             } else if (opcao == 3) {
                 System.out.print("Insira a nova marca do produto: ");
-                marca = sc.nextLine();
+                marca = recebeString();
                 alteracao = prodAlterar.setMarca(marca);
             } else if (opcao == 4) {
                 System.out.print("Insira o novo preco do produto: ");
