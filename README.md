@@ -6,9 +6,7 @@ Este projeto é continuação do trabalho [já publicado](https://github.com/bru
   <img width="50%" src="/animation/java-controle-estoque-modulos-animation.gif">
 </div>
 
-
 ![image](https://github.com/brunocmnz/java-controle-de-estoque-menus/assets/117315412/8745e71c-cc66-4dd2-96f1-00bbb0a4a061)
-
 
 ![image](https://github.com/brunocmnz/java-controle-de-estoque-menus/assets/117315412/05963e69-3685-4520-8ee7-691143230656)
 
