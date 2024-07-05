@@ -1,2 +1,2 @@
-# java-controle-de-estoque-menus
-# java-controle-de-estoque-menus
+# Controle de estoque em Java - com módulo administrador e atendente
+
