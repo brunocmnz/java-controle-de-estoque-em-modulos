@@ -2,7 +2,7 @@
 
 Este projeto é continuação do trabalho [já publicado](https://github.com/brunocmnz/java-sistema-de-controle-estoque) aqui no github. Como adicional, este trabalho tinha por objetivo o desenvolvimento de módulos administrador e atendente, sendo que, para cadastrar compras é preciso estar no módulo atendente, e já para alterar dados é preciso estár no módulo administrador.
 
-[Clique aqui](https://www.youtube.com/watch?v=yEolzbGTkj0](https://youtu.be/WOWgi61q168) para assistir um vídeo de demonstração do programa funcionando.
+[Clique aqui](https://youtu.be/WOWgi61q168) para assistir um vídeo de demonstração do programa funcionando.
 
 
 ![image](https://github.com/brunocmnz/java-controle-de-estoque-menus/assets/117315412/8745e71c-cc66-4dd2-96f1-00bbb0a4a061)
